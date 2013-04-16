@@ -4,8 +4,10 @@
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" href="components/bootstrap.css/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="components/toastr/toastr.min.css"/>
 	<link rel="stylesheet" href="css/animation.css" />
 
+	<script src="components/jquery/jquery.min.js"></script>
 	<script src="components/angular/angular.js"></script>
 	<script src="components/angular-ui/build/angular-ui.js"></script>
 	<script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -35,8 +37,8 @@
 		</div>
 
 		<div class="span9">
-			<div class="well" id="SVGContainer" ng-controller="SVGCtrl"></div>
-		</div>
+			<img src="img/lettuce.png"></img>
+		</div> 
 
 		<div class="span3">
 			<div class="well">
@@ -72,7 +74,6 @@
 
 			<div class="well" ng-controller="DeviceStatusCtrl">
 				<ul class="nav">
-					<li><i class="icon-signal"></i> Network <i class="icon-heart" title="Communication vitality"></i>: <span class="{{commstatusclass}}">{{commstatus}}</span></li>
 					<li>
 						<i class="icon-exchange"></i>
 						Last check-in:
@@ -85,5 +86,6 @@
   	</div>
 
 </div>
+<script src="components/toastr/toastr.min.js"></script>
 </body>
 </html> 

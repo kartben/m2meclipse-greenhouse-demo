@@ -3,18 +3,18 @@
 angular.module('restservice', []).factory('$restservice', ['$http', function($http) {
   var restservice = {};
   var assetName = "greenhouse";
-  var serverurl = "/m3da";
-  var deviceassetId = "jaxcon-demo";
+  var serverurl = "/m3da/clients/";
+  var deviceassetId = "m2m_greenhouse_demo";
+  var requesturl = serverurl + deviceassetId + '/data';
 
   restservice.getGreenData = function(successHandler, errorHandler) {
-    $http.get(serverurl + '/data/' + deviceassetId).success(function(data) {
+    $http.get(requesturl).success(function(data) {
       var response = {};
 
       // Light is not sent by embedded app
       // retreiving booleans
-      // response.light = data[assetName + ".data.light"][0].value === 'true' ?
-      // 'on' : 'off';
-      response.shield = data[assetName + ".data.open"][0].value[0] === 'true' ? 'on' : 'off';
+      response.light = data[assetName + ".data.light"][0].value[0] === true ? 'on' : 'off';
+      response.shield = data[assetName + ".data.open"][0].value[0] === true ? 'on' : 'off';
 
       // Round given values
       response.luminosity = data[assetName + ".data.luminosity"][0].value[0];
@@ -32,29 +32,21 @@ angular.module('restservice', []).factory('$restservice', ['$http', function($ht
 
   restservice.toggleCommand = function(commandId, newStatus, handleSuccess, handleNoApp, handleCommandError) {
 
-    // TODO not tested
-    $http.get(serverurl + '/data/' + deviceassetIdd).success(function(data) {
-
-      // Send command
-      var postData = {
-        "settings": [{
-          "key": "@sys.commands.ReadNode." + commandId,
-          "value": newStatus
-        }]
-      };
-      $http.post(serverurl + '/data' + deviceassetId, postData).success(handleSuccess).error(handleCommandError);
-    }).error(handleNoApp);
+    // Send command
+    var postData = {
+      "settings": [{
+        "key": commandId,
+        "value": newStatus
+      }]
+    };
+    $http.post(requesturl, postData).success(handleSuccess).error(handleCommandError);
   };
 
   restservice.getCommStatus = function(handleSuccess, handleError) {
-    $http.get(serverurl + '/data/' + deviceassetId).success(function(data) {
+    $http.get(requesturl).success(function(data) {
 
       var result = {};
       result.lastCommDate = parseInt(data[assetName + ".data.timestamp"][0].value[0]);
-
-      // WARNING NO comm status on the open server !
-      console.log("WARNING NO comm status on 'open server' !");
-      // result.status = data.items[0]["commStatus"];
 
       handleSuccess(result);
 
