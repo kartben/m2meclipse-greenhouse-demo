@@ -1,0 +1,41 @@
+<div class="container">
+
+	<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>Greenhouse Web App <small>device: <strong>{{deviceId}}</strong></small></h1>
+			</div>
+		</div>
+	</div>
+		<ul class="thumbnails">
+			<li class="span3">
+				<div class="thumbnail" style="text-align: center">
+					<embed src="img/noun_project_2023.svg" type="image/svg+xml"/>
+					<h1>{{temperature.value}} <small>°C</small></h1>
+					<p><small>{{temperature.timestamp}}</small></p>
+				</div>
+			</li>
+			<li class="span3">
+				<div class="thumbnail" style="text-align: center">
+					<embed src="img/noun_project_868.svg" type="image/svg+xml"/>
+					<h1>{{luminosity.value}} <small>Lux</small></h1>
+					<p><small>{{luminosity.timestamp}}</small></p>
+				</div>
+			</li>
+			<li class="span3">
+				<div class="thumbnail" style="text-align: center">
+					<embed src="img/noun_project_5546.svg" type="image/svg+xml"/>
+					<h1>{{humidity.value}} <small>%</small></h1>
+					<p><small>{{humidity.timestamp}}</small></p>
+				</div>
+			</li>
+			<li class="span3">
+				<div class="thumbnail" style="text-align: center">
+					<embed src="img/noun_project_122.svg" type="image/svg+xml"/>
+					<h1><button class="btn btn-large" ng-click="toggleLight()"><strong>{{light.value}}</strong></button></h1>
+					<p><small>{{light.timestamp}}</small></p>
+				</div>
+			</li>
+		</ul>
+	
+</div>

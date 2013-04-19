@@ -1,6 +1,10 @@
 'use strict';
 
 /* App Module */
-// FIXME it seems that we have to the the app dependent of restservice even we
-// don't use it as this level.
-angular.module('greenhouse', ['restservice', 'ui', 'ui.bootstrap']);
+
+angular.module('greenhouse', ['greenhouseServices']).
+  config(['$routeProvider', function($routeProvider) {
+  $routeProvider.
+      when('/devices/:deviceId', {templateUrl: 'partials/device-detail.html', controller: DeviceDetailCtrl}).
+      otherwise({redirectTo: '/devices/'+device_id});
+  }]);
